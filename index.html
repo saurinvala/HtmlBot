@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>convForm - example</title>
@@ -18,44 +18,355 @@
 	                    <div class="card no-border">
 	                        <div id="chat" class="conv-form-wrapper">
 	                            <form action="" method="GET" class="hidden">
-	                                <select conv-question="Hello! I'm a bot created from a HTML form. Can I show you some features? (this question comes from a select)">
-	                                    <option value="yes">Yes</option>
-	                                    <option value="sure">Sure!</option>
-	                                </select>
-	                                <input type="text" name="name" conv-question="Alright! First, tell me your full name, please.|Okay! Please, tell me your name first.">
-	                                <input type="text" conv-question="Howdy, {name}:0! It's a pleasure to meet you. (note that this question doesn't expect any answer)" no-answer="true">
-	                                <select name="programmer" conv-question="So, are you a programmer? (this question will fork the conversation based on your answer)">
-	                                    <option value="yes">Yes</option>
-	                                    <option value="no">No</option>
-	                                </select>
-	                                <div conv-fork="programmer">
-	                                    <div conv-case="yes">
-	                                        <input type="text" conv-question="A fellow programmer! Cool." no-answer="true">
-	                                    </div>
-	                                    <div conv-case="no">
-		                                    <select name="thought" conv-question="Have you ever thought about learning? Programming is fun!">
-		                                    	<option value="yes">Yes</option>
-		                                    	<option value="no">No..</option>
-		                                    </select>
-	                                    </div>
-	                                </div>
-	                                <input type="text" conv-question="This plugin supports multi-select too. Let's see an example." no-answer="true">
-	                                <select name="multi[]" conv-question="What kind of music do you like?" multiple>
-	                                    <option value="Rock">Rock</option>
-	                                    <option value="Pop">Pop</option>
-	                                    <option value="Country">Country</option>
-	                                    <option value="Classic">Classic</option>
-	                                </select>
-	                                <input type="text" conv-question="convForm also supports regex patterns. Look:" no-answer="true">
-	                                <input conv-question="Type in your e-mail" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" id="email" type="email" name="email" required placeholder="What's your e-mail?">
-	                                <input conv-question="Now tell me a secret (like a password)" type="password" data-minlength="6" id="senha" name="password" required placeholder="password">
-																	<select conv-question="Selects also support callback functions. For example, try one of these:">
-																			<option value="google" callback="google">Google</option>
-																			<option value="bing" callback="bing">Bing</option>
-																	</select>
-	                                <select conv-question="This is it! If you like me, consider donating! If you need support, contact me. When the form gets to the end, the plugin submits it normally, like you had filled it." id="">
-	                                    <option value="">Awesome!</option>
-	                                </select>
+                                    <select conv-question="Hi! Welcome to Kalorex. I am Kalorex ro-Botic Assistant. I can help you for admission related queries.">
+
+                                        <option value="yes">Yes</option>
+                                        <option value="sure">Sure!</option>
+                                    </select>
+
+
+                                    <select conv-question="Alright! I would require certain information to help you better. Can we start ?">
+                                        <option value="yes">Yes</option>
+                                        <option value="sure">Sure!</option>
+                                    </select>
+
+                                    <select name="schoolQuestion" conv-question="Let me know what are you looking for?">
+
+                                        <option value="school" id="optionSchool">School</option>
+                                        <option value="preschool" id="optionPreschool">Preschool</option>
+                                        <option value="Franchise" id="optionFranchise">Franchise Enquiry</option>
+                                    </select>
+
+                                    <div conv-fork="schoolQuestion">
+                                        <div conv-case="Franchise">
+
+                                            <input type="text" name="name" conv-question="Thank you, please provide me your First Name and Last Name" pattern="[a-zA-Z]+[a-zA-Z]$">
+
+                                            <input type="email" name="email" id="email" pattern="^[A-Za-z0-9._%+-]+@(" @")[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" conv-question="Can i have your Email Address?">
+
+                                            <input type="number" name="name" conv-question="Can i have your mobile number?" pattern="^[0-9].{9,10}$" maxlength="10">
+
+                                            <input type="text" name="name" conv-question="Please provide me your city name alongwith address." pattern="[a-zA-Z]+[a-zA-Z]$">
+
+                                            <input type="text" name="name" conv-question=" Would you let me know in which city , you would like to have this franchise required ?" pattern="[a-zA-Z]+[a-zA-Z]$">
+
+                                            <input type="text" conv-question="I am very much thankful to you, we have forwarded your details to concern person, and you can expect them to contact you anytime" no-answer="true">
+
+                                            <input type="text" conv-question="Would be great if you drop a word for this ro-botic experience? This would be helpful for me to improve and serve you better.">
+
+                                            <input type="text" conv-question="Thanks for your time .Wish you a great day.">
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="wizard" conv-fork="schoolQuestion">
+                                        <div conv-case="school" onclick="hidden()">
+
+
+                                            <input type="text" name="name" conv-question="Can i have name of your child/ward?" pattern="[a-zA-Z]+[a-zA-Z]$">
+
+                                            <input type="text" name="name" conv-question="Can i have name of your's." pattern="[a-zA-Z]+[a-zA-Z]$">
+
+                                            <p>
+                                                <select conv-question="What is your relationship with <b>{name}:0</b>?">
+
+
+                                                    <option value="yes">Father</option>
+                                                    <option value="sure">Mother</option>
+                                                    <option value="sure">Guardian </option>
+
+                                                </select>
+                                            </p>
+
+                                            <input type="text" name="name" id="email" pattern="^[A-Za-z0-9._%+-]+@(" @")[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" type="email" name="email" conv-question="Can i have your Email Address?">
+
+                                            <input type="text" name="name" type="number" conv-question="Can i have your mobile number?" pattern="^[0-9].{9,10}$" maxlength="10">
+
+                                            <input type="text" conv-question="Thank for your inputs. Let me ask you about the admission related question "
+                                                   no-answer="true">
+                                        </div>
+                                        <select name="board" conv-question="Ok, Within school which board are you looking for?">
+                                            <option value="cbse">CBSE</option>
+                                            <option value="international">International</option>
+                                        </select>
+
+                                        <div conv-fork="board">
+                                            <div conv-case="cbse">
+
+                                                <select name="state" conv-question="Thanks, could you please let me know in which state are you  looking for the School admission?">
+                                                    <option value="guj">Gujarat</option>
+                                                    <option value="rajshtn">Rajasthan</option>
+                                                </select>
+
+                                                <div conv-fork="state">
+                                                    <div conv-case="guj">
+                                                        <select name="guj" conv-question="In Gujarat which city are you looking for?">
+                                                            <option value="abd">Ahmedabad</option>
+                                                            <option value="CPS Rajula">CPS Rajula</option>
+                                                            <option value="bhurch">NCPS Bharuch</option>
+                                                            <option value="mundra">CPS Mundra</option>
+                                                        </select>
+                                                        <div conv-fork="guj">
+                                                            <div conv-case="abd">
+
+                                                                <select name="abd" conv-question="Ok, In city Ahmedabad which zone are you looking for?">
+
+                                                                    <option value="East">East</option>
+                                                                    <option value="West">West</option>
+                                                                    <option value="South">South</option>
+
+                                                                </select>
+
+                                                                <div conv-fork="abd">
+
+                                                                    <div conv-case="East">
+
+                                                                        <select name="eastSchool" conv-question="Ok, In east zone from below which school are you looking for?">
+                                                                            <option value="KPrS Nikol">KPrS Nikol</option>
+                                                                            <option value="KPrS Vastral">KPrS Vastral </option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <div conv-case="West">
+                                                                        <select name="westSchool" conv-question="Ok, In West zone from below which school are you looking for?">
+
+                                                                            <option value="KPrS  Bhuyangdev">KPrS Bhuyangdev</option>
+                                                                            <option value="KPrS Bopal">KPrS Bopal</option>
+                                                                            <option value="KPrS New CG Road">KPrS New CG Road</option>
+                                                                            <option value="KPrS Gahtlodia">KPrS Gahtlodia</option>
+
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div conv-case="South">
+                                                                        <select name="southZone" conv-question="Ok, In South zone from below which school are you looking for?">
+
+                                                                            <option value="KPrS Isanpur">KPrS Isanpur </option>
+
+                                                                            <option value="KPrS Maninagar">KPrS Maninagar</option>
+
+                                                                            <option value="KPrS Vejalpur">KPrS Vejalpur </option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <input type="number" name="name" conv-question="In which standard (Between 1 to 12 class) is seeking admission for DPS? ">
+
+                                        <input type="text" conv-question="Can i have your residence address detail ? ( Please type Block No & Society Name)">
+
+                                        <input type="text" conv-question=" On which street you residence address is located ? (Please type Street name)">
+
+                                        <input type="text" conv-question="In which area you are located?">
+
+                                        <input type="number" name="name" conv-question="Can i have pincode please?" pattern="^[0-9].{4,5}$" maxlength="6" placeholder="number">
+
+                                        <input type="text" name="name" conv-question="Are you leaving in which city of India ?">
+
+                                        <input type="text" conv-question="Oh is it? ,{name}:0! its really a great city to live in. Can i have name of state please?">
+
+                                        <select name="thanks" conv-question="Thank you very much for patience and filling up all the required information. Do you want to say something apart from this ?">
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+
+                                        <div conv-fork="thanks">
+
+                                            <div conv-case="yes">
+                                                <select name="message1" conv-question="Ok, Before i submit this information to concern department, please review the same  and confirm">
+                                                    <option value="yes">Yes</option>
+                                                    <option value="sure">No</option>
+                                                </select>
+                                            </div>
+
+                                            <div conv-case="no">
+                                                <input type="text" conv-question="I am very much thankful to you, we have forwarded your details to concern person, and you can expect them to contact you anytime" no-answer="true">
+                                            </div>
+
+                                        </div>
+
+                                        <input type="text" conv-question="Would be great if you drop a word for this ro-botic experience? This would be helpful for me to improve and serve you better.">
+
+                                        <input type="text" conv-question="Thanks for your time .Wish you a great day.">
+
+
+                                        <select name="school" conv-question="Hey, Would you like to start our process again?">
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+
+                                        <div conv-fork="school">
+                                            <div conv-case="yes" onclick=" location.reload()">
+                                                <input type="text" conv-question="thank you" no-answer="true">
+                                            </div>
+
+                                            <div conv-case="no">
+                                                <select name="message" conv-question="Ok,Thanks for your time. We appreciate it"></select>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div conv-fork="schoolQuestion">
+
+                                        <div conv-case="preschool" onclick="hidden()">
+                                            <select conv-question="Thanks, could you please let me know in which state are you  looking for the Pre-school admission?">
+                                                <option value="yes">Gujarat</option>
+                                                <option value="sure">Rajasthan</option>
+                                            </select>
+                                            <div conv-fork="state">
+                                                <div conv-case="guj">
+                                                    <select name="guj" conv-question="In Gujarat which city are you looking for?">
+                                                        <option value="abd">Ahmedabad</option>
+                                                        <option value="CPS Rajula">CPS Rajula</option>
+                                                        <option value="bhurch">NCPS Bharuch</option>
+                                                        <option value="mundra">CPS Mundra</option>
+                                                    </select>
+                                                    <div conv-fork="guj">
+                                                        <div conv-case="abd">
+
+
+                                                            <select name="abd" conv-question="Ok, In city Ahmedabad which zone are you looking for?">
+                                                                <option value="East">East</option>
+                                                                <option value="West">West</option>
+                                                                <option value="South">South</option>
+
+                                                            </select>
+                                                            <div conv-fork="abd">
+                                                                <div conv-case="East">
+                                                                    <select name="eastSchool" conv-question="Ok, In east zone from below which school are you looking for?">
+                                                                        <option value="KPrS Nikol">KPrS Nikol</option>
+                                                                        <option value="KPrS Vastral">KPrS Vastral </option>
+
+                                                                    </select>
+                                                                </div>
+                                                                <div conv-case="West">
+                                                                    <select name="westSchool" conv-question="Ok, In West zone from below which school are you looking for?">
+
+                                                                        <option value="KPrS  Bhuyangdev">KPrS Bhuyangdev</option>
+                                                                        <option value="KPrS Bopal">KPrS Bopal</option>
+                                                                        <option value="KPrS New CG Road">KPrS New CG Road</option>
+                                                                        <option value="KPrS Gahtlodia">KPrS Gahtlodia</option>
+
+                                                                    </select>
+                                                                </div>
+
+                                                                <div conv-case="South">
+                                                                    <select name="southZone" conv-question="Ok, In South zone from below which school are you looking for?">
+
+                                                                        <option value="KPrS Isanpur">KPrS Isanpur </option>
+                                                                        <option value="KPrS Maninagar">KPrS Maninagar</option>
+                                                                        <option value="KPrS Vejalpur">KPrS Vejalpur </option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <input type="text" conv-question="Can i have your residence address detail ? ( Please type Block No & Society Name)">
+
+                                            <input type="text" conv-question=" On which street you residence address is located ? (Please type Street name)">
+
+                                            <input type="text" conv-question="In which area you are located?">
+
+                                            <input type="text" name="name" type="number" conv-question="Can i have pincode please?" pattern="^[0-9].{4,5}$" maxlength="6" placeholder="number">
+
+                                            <input type="text" name="name" conv-question="Are you leaving in which city of India ?">
+
+                                            <input type="text" conv-question="Oh is it? ,{name}:0! its really a great city to live in. Can i have name of state please?">
+
+                                            <select name="thanks" conv-question="Thank you very much for patience and filling up all the required information. Do you want to say something apart from this ?">
+                                                <option value="yes">Yes</option>
+                                                <option value="no">No</option>
+                                            </select>
+
+                                            <div conv-fork="thanks">
+
+                                                <div conv-case="yes">
+                                                    <select name="message1" conv-question="Ok, Before i submit this information to concern department, please review the same  and confirm">
+                                                        <option value="yes">Yes</option>
+                                                        <option value="sure">No</option>
+                                                    </select>
+                                                </div>
+
+                                                <div conv-case="no">
+                                                    <input type="text" conv-question="I am very much thankful to you, we have forwarded your details to concern person, and you can expect them to contact you anytime" no-answer="true">
+                                                </div>
+
+                                            </div>
+
+                                            <input type="text" conv-question="Would be great if you drop a word for this ro-botic experience? This would be helpful for me to improve and serve you better.">
+
+                                            <input type="text" conv-question="Thanks for your time .Wish you a great day.">
+
+                                            <div conv-fork="school">
+                                                <div conv-case="yes" onclick=" location.reload()">
+                                                    <input type="text" conv-question="thank you" no-answer="true">
+                                                </div>
+
+                                                <div conv-case="no">
+                                                    <select name="message" conv-question="Ok,Thanks for your time. We appreciate it"></select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div style="display:none">
+                                        <select conv-question="Hello! I'm a bot created from a HTML form. Can I show you some features? (this question comes from a select)">
+                                            <option value="yes">Yes</option>
+                                            <option value="sure">Sure!</option>
+                                        </select>
+                                        <input type="text" name="name" conv-question="Alright! First, tell me your full name, please.|Okay! Please, tell me your name first.">
+                                        <input type="text" conv-question="Howdy, {name}:0! It's a pleasure to meet you. (note that this question doesn't expect any answer)" no-answer="true">
+                                        <select name="programmer" conv-question="So, are you a programmer? (this question will fork the conversation based on your answer)">
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                        <div conv-fork="programmer">
+                                            <div conv-case="yes">
+                                                <input type="text" conv-question="A fellow programmer! Cool." no-answer="true">
+                                            </div>
+                                            <div conv-case="no">
+                                                <select name="thought" conv-question="Have you ever thought about learning? Programming is fun!">
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No..</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <input type="text" conv-question="This plugin supports multi-select too. Let's see an example." no-answer="true">
+                                        <select name="multi[]" conv-question="What kind of music do you like?" multiple>
+                                            <option value="Rock">Rock</option>
+                                            <option value="Pop">Pop</option>
+                                            <option value="Country">Country</option>
+                                            <option value="Classic">Classic</option>
+                                        </select>
+                                        <input type="text" conv-question="convForm also supports regex patterns. Look:" no-answer="true">
+                                        <input conv-question="Type in your e-mail" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" id="email" type="email" name="email" required placeholder="What's your e-mail?">
+                                        <input conv-question="Now tell me a secret (like a password)" type="password" data-minlength="6" id="senha" name="password" required placeholder="password">
+                                        <select conv-question="Selects also support callback functions. For example, try one of these:">
+                                            <option value="google" callback="google">Google</option>
+                                            <option value="bing" callback="bing">Bing</option>
+                                        </select>
+                                        <select conv-question="This is it! If you like me, consider donating! If you need support, contact me. When the form gets to the end, the plugin submits it normally, like you had filled it." id="">
+                                            <option value="">Awesome!</option>
+                                        </select>
+                                    </div>
 	                            </form>
 	                        </div>
 	                    </div>
